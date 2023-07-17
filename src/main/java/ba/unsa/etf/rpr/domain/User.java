@@ -39,5 +39,13 @@ public class User implements IDable{
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; //In case that same instace on which method was called is passed as argument
+        if (o == null || getClass() != o.getClass()) return false;
+       User user = (User) o;
+        return id == user.id;
+    }
+
 
 }
