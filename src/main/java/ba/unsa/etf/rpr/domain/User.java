@@ -2,6 +2,13 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
+
+/***
+ * <h1>Users of library</h1>
+ *
+ * This POJO bean contains data for a single library user
+ */
+
 public class User implements IDable{
 
     private int id;
