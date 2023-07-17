@@ -49,5 +49,17 @@ public class IssuedBook implements IDable {
         return this.issueDate;
     }
 
+    public String toString(){
+        return "IssueOfBook{" +
+                "id=" + id +
+                ", bookID=" + bookID +
+                ", userID=" + userID +
+                ", issueDate=" + issueDate +
+                '}';
+    } //Although in general it doesn't make sense to implement toString method for this specific class, it will probably be used at some
+    //point for testing purposes
+
+
+
 
 }
