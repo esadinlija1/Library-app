@@ -8,12 +8,29 @@ public class Book implements IDable{
 
     @Override
     public void setId(int id) {
-
+         this.id=id;
     }
 
     @Override
     public int getId() {
-        return 0;
+        return this.id;
+    }
+
+
+    public void setAuthor(String author){
+        this.author=author;
+    }
+
+    public String getAuthor(){
+        return this.author;
+    }
+
+    public String getTitle(){
+        return this.title;
+    }
+
+    public void setTitle(){
+        this.title=title;
     }
 
 
