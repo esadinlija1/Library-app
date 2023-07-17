@@ -15,5 +15,19 @@ public interface Dao<T> {
      */
     T getById(int id);
 
+    /***
+     * 'add' method, as its name suggests, adds an item to database. Based on the time of object that is passed as argument,
+     * it will be added to its matching table
+     * @param item
+     */
+    void add(T item);
+
+    /***
+     * 'update' method will use an object passed as methods argument, and it will update a row in table based on id attribute
+     * of object, in way that object which is currently in database will be completely replaced by other
+     */
+    void update(T item);
+
 
 }
+
