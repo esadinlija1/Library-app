@@ -54,5 +54,15 @@ public class User implements IDable{
         return Objects.hash(id,name,email,phone);
     }
 
+    @Override
+    public String toString(){
+        return "User{" +
+                "id=" + id +
+                ", name=" + name +
+                ", email=" + email +
+                ", phone=" + phone +
+                '}';
+    } //returned string replicates a single row in 'users' table
+
 
 }
