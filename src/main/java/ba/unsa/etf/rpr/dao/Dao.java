@@ -8,5 +8,12 @@ package ba.unsa.etf.rpr.dao;
  */
 public interface Dao<T> {
 
+    /***
+     * This method gets an item from database based on its id. Applicable on all domain classes
+     * @param id
+     * @return
+     */
+    T getById(int id);
+
 
 }
