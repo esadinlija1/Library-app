@@ -22,4 +22,32 @@ public class IssuedBook implements IDable {
     public int getId() {
         return this.id;
     }
+
+    public void setBookId(int bookID) {
+        this.bookID=bookID;
+    }
+
+
+    public int getBookID() {
+        return this.bookID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID=userID;
+    }
+
+
+    public int getUserID() {
+        return this.userID;
+    }
+
+    public void setIssueDate(String issueDate){
+        this.issueDate=issueDate;
+    }
+
+    public String getIssueDate(){
+        return this.issueDate;
+    }
+
+
 }
