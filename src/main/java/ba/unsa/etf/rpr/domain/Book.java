@@ -2,6 +2,12 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
+
+/***
+ * POJO bean for books table. Contains data for each book, which include unique ID.
+ * Number of books with same title and author can have different IDs, which is case because in real libraries
+ * there are plenty of same books, so multiple users can borrow the same book
+ */
 public class Book implements IDable{
 
     private int id;
