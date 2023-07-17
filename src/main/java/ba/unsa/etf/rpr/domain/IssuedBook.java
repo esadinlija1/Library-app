@@ -49,6 +49,9 @@ public class IssuedBook implements IDable {
         return this.issueDate;
     }
 
+
+
+     @Override
     public String toString(){
         return "IssueOfBook{" +
                 "id=" + id +
@@ -56,8 +59,19 @@ public class IssuedBook implements IDable {
                 ", userID=" + userID +
                 ", issueDate=" + issueDate +
                 '}';
-    } //Although in general it doesn't make sense to implement toString method for this specific class, it will probably be used at some
-    //point for testing purposes
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this==o) return true; //In case that the same instance on which method was called is passed as argument
+        if(o==null || o.getClass()!=getClass()) return false; //In case that null-object or object that is not of Book type is passed as argument
+        IssuedBook issuedBook=(IssuedBook) o; // o downcasted as Book
+        return this.id==issuedBook.id; //check if id of current object and o are equal
+    }
+
+
+
+
 
 
 
