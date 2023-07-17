@@ -34,4 +34,16 @@ public class Book implements IDable{
     }
 
 
+    public String toString(){
+        return "Book{" +
+                "id=" + id +
+                ", title=" + title +
+                ", author=" + author +
+                '}';
+    } //For now, I can't figure out when exactly I will need toString method, so for beginnig, it should return something
+    //similar to a row in table
+
+
+
+
 }
