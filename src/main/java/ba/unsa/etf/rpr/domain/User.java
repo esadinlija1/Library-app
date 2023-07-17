@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.domain;
 
+import java.util.Objects;
+
 public class User implements IDable{
 
     private int id;
@@ -45,6 +47,11 @@ public class User implements IDable{
         if (o == null || getClass() != o.getClass()) return false;
        User user = (User) o;
         return id == user.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id,name,email,phone);
     }
 
 
