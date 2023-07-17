@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.domain;
 
+import java.util.Objects;
+
 /***
  * POJO bean that represents data for a single record in table of issued books.
  * For each record there is ID of book that was borrowed and ID of user that borrowed it, both are foreign keys from 'books' and 'users'
@@ -69,10 +71,10 @@ public class IssuedBook implements IDable {
         return this.id==issuedBook.id; //check if id of current object and o are equal
     }
 
-
-
-
-
+    @Override
+    public int hashCode(){
+        return Objects.hash(id,bookID,userID,issueDate);
+    }
 
 
 
