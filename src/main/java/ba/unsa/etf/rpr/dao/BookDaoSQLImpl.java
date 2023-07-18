@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Book;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -95,6 +96,22 @@ public class BookDaoSQLImpl implements BookDao{
 
     @Override
     public List<Book> getAll() {
-        return null;
+        String query="SELECT * FROM books";
+        List<Book> books=new ArrayList<Book>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){ // result set is iterator.
+                Book book = new Book();
+                book.setId(rs.getInt("id"));
+                book.setTitle(rs.getString("title"));
+                book.setAuthor(rs.getString("author"));
+                books.add(book);
+            }
+            rs.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return books;
     }
 }
