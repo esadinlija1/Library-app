@@ -61,7 +61,16 @@ public class IssuedBookDaoSQLImpl implements IssuedBookDao{
 
     @Override
     public void update(IssuedBook item) {
-
+        String update="UPDATE issued_books SET bookID=?,userID=?,issueDate=? WHERE id=?";
+        try{
+            PreparedStatement stmt=this.connection.prepareStatement(update);
+            stmt.setObject(1,item.getBookID());
+            stmt.setObject(2,item.getUserID());
+            stmt.setObject(3,item.getIssueDate());
+            stmt.executeUpdate();
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
