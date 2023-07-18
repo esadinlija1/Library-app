@@ -75,7 +75,14 @@ public class IssuedBookDaoSQLImpl implements IssuedBookDao{
 
     @Override
     public void delete(int id) {
-
+        String delete="DELETE FROM issued_books WHERE id = ?";
+        try{
+            PreparedStatement stmt=this.connection.prepareStatement(delete);
+            stmt.setObject(1,id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
