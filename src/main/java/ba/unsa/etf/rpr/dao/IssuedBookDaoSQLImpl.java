@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.domain.Book;
 import ba.unsa.etf.rpr.domain.IssuedBook;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class IssuedBookDaoSQLImpl implements IssuedBookDao{
@@ -87,6 +88,24 @@ public class IssuedBookDaoSQLImpl implements IssuedBookDao{
 
     @Override
     public List<IssuedBook> getAll() {
-        return null;
+        String query="SELECT * FROM issued_books";
+        List<IssuedBook> issuedBooks=new ArrayList<IssuedBook>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){ // result set is iterator.
+                IssuedBook issuedBook= new IssuedBook();
+                issuedBook.setId(rs.getInt("id"));
+                issuedBook.setBookId(rs.getInt("bookID"));
+                issuedBook.setUserID(rs.getInt("userID"));
+                issuedBook.setIssueDate(rs.getString("issueDate"));
+                issuedBooks.add(issuedBook);
+            }
+            rs.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return issuedBooks;
     }
 }
+
