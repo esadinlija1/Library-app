@@ -46,7 +46,18 @@ public class UserDaoSQLImpl implements UserDao{
 
     @Override
     public void add(User item) {
-
+        String insert="INSERT INTO users(id,name,email,phone) VALUES(?)";
+        try{
+            PreparedStatement stmt=connection.prepareStatement(insert);
+            stmt.setInt(1,item.getId());
+            stmt.setString(2,item.getName());
+            stmt.setString(3,item.getEmail());
+            stmt.setString(4,item.getPhone());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Greška u radu sa bazom podataka");
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
