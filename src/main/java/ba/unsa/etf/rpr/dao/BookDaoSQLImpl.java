@@ -42,11 +42,22 @@ public class BookDaoSQLImpl implements BookDao{
 
     @Override
     public void add(Book item) {
-
+        int id=item.getId();
+        String title=item.getTitle();
+        String author=item.getAuthor();
+        String query="INSERT INTO books VALUES(id,title,author)";
+        try{
+            PreparedStatement stmt=connection.prepareStatement(query);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Greška u radu sa bazom podataka");
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public void update(Book item) {
+
 
     }
 
