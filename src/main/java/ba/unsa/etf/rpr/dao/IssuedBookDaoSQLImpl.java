@@ -45,7 +45,18 @@ public class IssuedBookDaoSQLImpl implements IssuedBookDao{
 
     @Override
     public void add(IssuedBook item) {
-
+        String insert="INSERT INTO issued_books(id,bookID,userID,issueDate) VALUES(?)";
+        try{
+            PreparedStatement stmt=connection.prepareStatement(insert);
+            stmt.setInt(1,item.getId());
+            stmt.setInt(2,item.getBookID());
+            stmt.setInt(3,item.getUserID());
+            stmt.setString(4,item.getIssueDate());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Greška u radu sa bazom podataka");
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
