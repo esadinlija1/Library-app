@@ -51,12 +51,13 @@ public class BookDaoSQLImpl implements BookDao{
 
     @Override
     public void add(Book item) {
-        int id=item.getId();
-        String title=item.getTitle();
-        String author=item.getAuthor();
-        String query="INSERT INTO books VALUES(id,title,author)";
+
+        String insert="INSERT INTO books(id,title,author) VALUES(?)";
         try{
-            PreparedStatement stmt=connection.prepareStatement(query);
+            PreparedStatement stmt=connection.prepareStatement(insert);
+            stmt.setInt(1,item.getId());
+            stmt.setString(2,item.getTitle());
+            stmt.setString(3,item.getAuthor());
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Greška u radu sa bazom podataka");
@@ -66,7 +67,16 @@ public class BookDaoSQLImpl implements BookDao{
 
     @Override
     public void update(Book item) {
-
+       String update="UPDATE books SET title=?,author=? WHERE id=?";
+       try{
+           PreparedStatement stmt=this.connection.prepareStatement(update);
+           stmt.setObject(1,item.getTitle());
+           stmt.setObject(2,item.getAuthor());
+           stmt.setObject(3,item.getId());
+           stmt.executeUpdate();
+       }catch (SQLException e) {
+           throw new RuntimeException(e);
+       }
 
     }
 
