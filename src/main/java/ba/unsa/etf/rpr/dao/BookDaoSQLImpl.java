@@ -29,7 +29,7 @@ public class BookDaoSQLImpl implements BookDao{
     }
     @Override
     public Book getById(int id) {
-        String query="SELECT * FROM categories WHERE id = ?";
+        String query="SELECT * FROM books WHERE id = ?";
         try{
             PreparedStatement stmt=this.connection.prepareStatement(query);
             stmt.setInt(1,id);

@@ -1,4 +1,65 @@
 package ba.unsa.etf.rpr.dao;
 
-public class IssuedBookDaoSQLImpl {
+import ba.unsa.etf.rpr.domain.Book;
+import ba.unsa.etf.rpr.domain.IssuedBook;
+
+import java.sql.*;
+import java.util.List;
+
+public class IssuedBookDaoSQLImpl implements IssuedBookDao{
+    private Connection connection;
+
+
+
+    public IssuedBookDaoSQLImpl(){
+        try{
+            this.connection= DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net/sql7633145?serverTimeZone=UTC","sql7633145","jk7sNa4jhC");
+        } catch (SQLException e) {
+            System.out.println("Greška u radu sa bazom podataka");
+            System.out.println(e.getMessage());
+        }
+    }
+    @Override
+    public IssuedBook getById(int id) {
+        String query="SELECT * FROM issued_books WHERE id = ?";
+        try{
+            PreparedStatement stmt=this.connection.prepareStatement(query);
+            stmt.setInt(1,id);
+            ResultSet rs=stmt.executeQuery();
+            if(rs.next()){
+               IssuedBook issuedBook=new IssuedBook();
+                issuedBook.setId(rs.getInt("id"));
+                issuedBook.setBookId(rs.getInt("bookID"));
+                issuedBook.setUserID(rs.getInt("userID"));
+                issuedBook.setIssueDate(rs.getString("issueDate"));
+                rs.close();
+                return issuedBook;
+            }else{
+                return null;   //if result set is empty then return null
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void add(IssuedBook item) {
+
+    }
+
+    @Override
+    public void update(IssuedBook item) {
+
+    }
+
+    @Override
+    public void delete(int id) {
+
+    }
+
+    @Override
+    public List<IssuedBook> getAll() {
+        return null;
+    }
 }
