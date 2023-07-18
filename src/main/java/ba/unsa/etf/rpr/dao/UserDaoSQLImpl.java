@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.domain.Book;
 import ba.unsa.etf.rpr.domain.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoSQLImpl implements UserDao{
@@ -89,6 +90,23 @@ public class UserDaoSQLImpl implements UserDao{
 
     @Override
     public List<User> getAll() {
-        return null;
+        String query="SELECT * FROM users";
+        List<User> users=new ArrayList<User>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){ // result set is iterator.
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setEmail(rs.getString("email"));
+                user.setPhone(rs.getString("phone"));
+                users.add(user);
+            }
+            rs.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return users;
     }
 }
