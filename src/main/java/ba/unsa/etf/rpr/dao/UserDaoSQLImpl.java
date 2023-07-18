@@ -62,7 +62,17 @@ public class UserDaoSQLImpl implements UserDao{
 
     @Override
     public void update(User item) {
-
+        String update="UPDATE users SET name=?,email=?,phone=? WHERE id=?";
+        try{
+            PreparedStatement stmt=this.connection.prepareStatement(update);
+            stmt.setObject(1,item.getName());
+            stmt.setObject(2,item.getEmail());
+            stmt.setObject(3,item.getPhone());
+            stmt.setObject(4,item.getId());
+            stmt.executeUpdate();
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
