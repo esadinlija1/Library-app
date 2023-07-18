@@ -5,6 +5,10 @@ import ba.unsa.etf.rpr.domain.Book;
 import java.sql.*;
 import java.util.List;
 
+
+/***
+ * Implementation of basic CRUD operations for Book beans, defined in Dao interface
+ */
 public class BookDaoSQLImpl implements BookDao{
 
     private Connection connection;
