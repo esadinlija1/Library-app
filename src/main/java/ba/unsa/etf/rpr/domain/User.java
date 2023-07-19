@@ -15,6 +15,17 @@ public class User implements IDable{
     private String name;
     private String email;
     private String phone; //For now, phone number will be String, maybe it will be changed to something else later
+
+    public User(){
+
+    }
+
+    public User(int id,String name,String email,String phone){
+        this.id=id;
+        this.name=name;
+        this.phone=phone;
+        this.email=email;
+    }
     @Override
     public void setId(int id) {
          this.id=id;

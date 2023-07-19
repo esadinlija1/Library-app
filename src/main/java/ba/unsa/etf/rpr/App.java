@@ -2,7 +2,9 @@ package ba.unsa.etf.rpr;
 
 
 import ba.unsa.etf.rpr.dao.BookDaoSQLImpl;
+import ba.unsa.etf.rpr.dao.UserDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Book;
+import ba.unsa.etf.rpr.domain.User;
 
 import java.util.List;
 
@@ -19,6 +21,14 @@ public class App
 
         System.out.println(books.get(0).toString());
         System.out.println((books.get(1).toString()));
+
+        UserDaoSQLImpl userDaoSQL=new UserDaoSQLImpl();
+
+        userDaoSQL.add(new User(1,"Emin Šadinlija","emin.sadinlija@gmail.com","062/095-112"));
+
+        List<User> users=userDaoSQL.getAll();
+
+        System.out.println(users.get(0).toString());
 
     }
 }
