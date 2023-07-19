@@ -19,7 +19,8 @@ public class BookDaoSQLImpl implements BookDao{
      * Constructor in which we define connection property, which is needed to access our database.
      * Throws exception if something went wrong with connecting to database
      */
-    public BookDaoSQLImpl(){
+    public BookDaoSQLImpl() throws ClassNotFoundException {
+
         try{
             this.connection= DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net/sql7633145?serverTimeZone=UTC","sql7633145","jk7sNa4jhC");
         } catch (SQLException e) {

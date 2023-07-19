@@ -13,10 +13,14 @@ import java.util.List;
 
 public class App
 {
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) throws ClassNotFoundException {
 
-        BookDaoSQLImpl bookDaoSQL=new BookDaoSQLImpl();
+        BookDaoSQLImpl bookDaoSQL= null;
+        try {
+            bookDaoSQL = new BookDaoSQLImpl();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         /*bookDaoSQL.add(new Book(1,"Na Drini ćuprija","Ivo Andrić"));
         bookDaoSQL.add(new Book(2,"Tvrđava","Meša Selimović"));*/
 

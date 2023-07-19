@@ -12,7 +12,9 @@ public class IssuedBookDaoSQLImpl implements IssuedBookDao{
 
 
 
-    public IssuedBookDaoSQLImpl(){
+    public IssuedBookDaoSQLImpl() throws ClassNotFoundException {
+
+
         try{
             this.connection= DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net/sql7633145?serverTimeZone=UTC","sql7633145","jk7sNa4jhC");
         } catch (SQLException e) {
