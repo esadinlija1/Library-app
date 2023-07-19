@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.domain;
 
+import ba.unsa.etf.rpr.dao.IssuedBookDao;
+
 import java.util.Objects;
 
 /***
@@ -14,6 +16,17 @@ public class IssuedBook implements IDable {
     private int bookID;
     private int userID;
     private String issueDate;
+
+    public IssuedBook(){
+
+    }
+
+    public IssuedBook(int id,int bookID,int userID,String issueDate){
+        this.id=id;
+        this.bookID=bookID;
+        this.issueDate=issueDate;
+        this.userID=userID;
+    }
 
     @Override
     public void setId(int id) {

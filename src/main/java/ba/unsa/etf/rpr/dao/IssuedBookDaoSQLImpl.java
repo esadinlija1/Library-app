@@ -96,7 +96,7 @@ public class IssuedBookDaoSQLImpl implements IssuedBookDao{
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){ // result set is iterator.
                 IssuedBook issuedBook= new IssuedBook();
-                issuedBook.setId(rs.getInt("issuedID"));
+                issuedBook.setId(rs.getInt("issueID"));
                 issuedBook.setBookId(rs.getInt("bookID"));
                 issuedBook.setUserID(rs.getInt("userID"));
                 issuedBook.setIssueDate(rs.getString("issueDate"));
