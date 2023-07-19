@@ -22,14 +22,14 @@ public class IssuedBookDaoSQLImpl implements IssuedBookDao{
     }
     @Override
     public IssuedBook getById(int id) {
-        String query="SELECT * FROM issued_books WHERE id = ?";
+        String query="SELECT * FROM issued_books WHERE issueID = ?";
         try{
             PreparedStatement stmt=this.connection.prepareStatement(query);
             stmt.setInt(1,id);
             ResultSet rs=stmt.executeQuery();
             if(rs.next()){
                IssuedBook issuedBook=new IssuedBook();
-                issuedBook.setId(rs.getInt("id"));
+                issuedBook.setId(rs.getInt("issueID"));
                 issuedBook.setBookId(rs.getInt("bookID"));
                 issuedBook.setUserID(rs.getInt("userID"));
                 issuedBook.setIssueDate(rs.getString("issueDate"));
@@ -46,7 +46,7 @@ public class IssuedBookDaoSQLImpl implements IssuedBookDao{
 
     @Override
     public void add(IssuedBook item) {
-        String insert="INSERT INTO issued_books(id,bookID,userID,issueDate) VALUES(?)";
+        String insert="INSERT INTO issued_books(issueID,bookID,userID,issueDate) VALUES(?,?,?,?)";
         try{
             PreparedStatement stmt=connection.prepareStatement(insert);
             stmt.setInt(1,item.getId());
@@ -62,12 +62,13 @@ public class IssuedBookDaoSQLImpl implements IssuedBookDao{
 
     @Override
     public void update(IssuedBook item) {
-        String update="UPDATE issued_books SET bookID=?,userID=?,issueDate=? WHERE id=?";
+        String update="UPDATE issued_books SET bookID=?,userID=?,issueDate=? WHERE issueID=?";
         try{
             PreparedStatement stmt=this.connection.prepareStatement(update);
             stmt.setObject(1,item.getBookID());
             stmt.setObject(2,item.getUserID());
             stmt.setObject(3,item.getIssueDate());
+            stmt.setObject(4,item.getId());
             stmt.executeUpdate();
         }catch (SQLException e) {
             throw new RuntimeException(e);
@@ -76,7 +77,7 @@ public class IssuedBookDaoSQLImpl implements IssuedBookDao{
 
     @Override
     public void delete(int id) {
-        String delete="DELETE FROM issued_books WHERE id = ?";
+        String delete="DELETE FROM issued_books WHERE issueID = ?";
         try{
             PreparedStatement stmt=this.connection.prepareStatement(delete);
             stmt.setObject(1,id);
@@ -95,7 +96,7 @@ public class IssuedBookDaoSQLImpl implements IssuedBookDao{
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){ // result set is iterator.
                 IssuedBook issuedBook= new IssuedBook();
-                issuedBook.setId(rs.getInt("id"));
+                issuedBook.setId(rs.getInt("issuedID"));
                 issuedBook.setBookId(rs.getInt("bookID"));
                 issuedBook.setUserID(rs.getInt("userID"));
                 issuedBook.setIssueDate(rs.getString("issueDate"));

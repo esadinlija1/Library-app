@@ -29,7 +29,7 @@ public class BookDaoSQLImpl implements BookDao{
     }
     @Override
     public Book getById(int id) {
-        String query="SELECT * FROM books WHERE id = ?";
+        String query="SELECT * FROM books WHERE bookID = ?";
         try{
             PreparedStatement stmt=this.connection.prepareStatement(query);
             stmt.setInt(1,id);
@@ -53,7 +53,7 @@ public class BookDaoSQLImpl implements BookDao{
     @Override
     public void add(Book item) {
 
-        String insert="INSERT INTO books(id,title,author) VALUES(?)";
+        String insert="INSERT INTO books(bookID,title,author) VALUES(?,?,?)";
         try{
             PreparedStatement stmt=connection.prepareStatement(insert);
             stmt.setInt(1,item.getId());
@@ -68,7 +68,7 @@ public class BookDaoSQLImpl implements BookDao{
 
     @Override
     public void update(Book item) {
-       String update="UPDATE books SET title=?,author=? WHERE id=?";
+       String update="UPDATE books SET title=?,author=? WHERE bookID=?";
        try{
            PreparedStatement stmt=this.connection.prepareStatement(update);
            stmt.setObject(1,item.getTitle());
@@ -83,7 +83,7 @@ public class BookDaoSQLImpl implements BookDao{
 
     @Override
     public void delete(int id) {
-        String delete="DELETE FROM books WHERE id = ?";
+        String delete="DELETE FROM books WHERE bookID = ?";
         try{
             PreparedStatement stmt=this.connection.prepareStatement(delete);
             stmt.setObject(1,id);
@@ -103,7 +103,7 @@ public class BookDaoSQLImpl implements BookDao{
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){ // result set is iterator.
                 Book book = new Book();
-                book.setId(rs.getInt("id"));
+                book.setId(rs.getInt("bookID"));
                 book.setTitle(rs.getString("title"));
                 book.setAuthor(rs.getString("author"));
                 books.add(book);

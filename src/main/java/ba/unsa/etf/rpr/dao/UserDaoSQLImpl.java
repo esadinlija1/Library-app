@@ -23,14 +23,14 @@ public class UserDaoSQLImpl implements UserDao{
     }
     @Override
     public User getById(int id) {
-        String query="SELECT * FROM users WHERE id = ?";
+        String query="SELECT * FROM users WHERE userID = ?";
         try{
             PreparedStatement stmt=this.connection.prepareStatement(query);
             stmt.setInt(1,id);
             ResultSet rs=stmt.executeQuery();
             if(rs.next()){
                 User user=new User();
-                user.setId(rs.getInt("id"));
+                user.setId(rs.getInt("userID"));
                 user.setName(rs.getString("name"));
                 user.setEmail(rs.getString("email"));
                 user.setPhone(rs.getString("phone"));
@@ -47,7 +47,7 @@ public class UserDaoSQLImpl implements UserDao{
 
     @Override
     public void add(User item) {
-        String insert="INSERT INTO users(id,name,email,phone) VALUES(?)";
+        String insert="INSERT INTO users(userID,name,email,phone) VALUES(?,?,?,?)";
         try{
             PreparedStatement stmt=connection.prepareStatement(insert);
             stmt.setInt(1,item.getId());
@@ -63,7 +63,7 @@ public class UserDaoSQLImpl implements UserDao{
 
     @Override
     public void update(User item) {
-        String update="UPDATE users SET name=?,email=?,phone=? WHERE id=?";
+        String update="UPDATE users SET name=?,email=?,phone=? WHERE userID=?";
         try{
             PreparedStatement stmt=this.connection.prepareStatement(update);
             stmt.setObject(1,item.getName());
@@ -78,7 +78,7 @@ public class UserDaoSQLImpl implements UserDao{
 
     @Override
     public void delete(int id) {
-        String delete="DELETE FROM users WHERE id = ?";
+        String delete="DELETE FROM users WHERE userID = ?";
         try{
             PreparedStatement stmt=this.connection.prepareStatement(delete);
             stmt.setObject(1,id);
@@ -97,7 +97,7 @@ public class UserDaoSQLImpl implements UserDao{
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){ // result set is iterator.
                 User user = new User();
-                user.setId(rs.getInt("id"));
+                user.setId(rs.getInt("userID"));
                 user.setName(rs.getString("name"));
                 user.setEmail(rs.getString("email"));
                 user.setPhone(rs.getString("phone"));
