@@ -3,9 +3,7 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.IDable;
 
 import java.sql.*;
-import java.util.AbstractMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 /***
  * Abstract class that implements CRUD operations for every entity.
@@ -169,6 +167,24 @@ public abstract  class AbstractDao<T extends IDable> implements Dao<T> {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    public List<T> getAll() {
+        String query="SELECT * FROM " + tableName;
+        List<T> results=new ArrayList<T>();
+        try{
+            PreparedStatement stmt=getConnection().prepareStatement(query);
+            ResultSet rs=stmt.executeQuery();
+            while(rs.next()){
+                T object=row2object(rs);
+                results.add(object);
+            }
+            rs.close();
+            return results;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
