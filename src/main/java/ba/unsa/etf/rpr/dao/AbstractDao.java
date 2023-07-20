@@ -6,7 +6,10 @@ import com.mysql.cj.jdbc.Driver;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.AbstractMap;
+import java.util.Map;
 import java.util.Properties;
 
 /***
@@ -38,6 +41,52 @@ public abstract  class AbstractDao<T extends IDable> implements Dao<T> {
         }
 
     }
+
+    public Connection getConnection(){
+        return this.connection;
+    }
+
+
+    /***
+     * This method will adapt a row to object of type T, based on
+     * from which entity the result set comes from
+     * @param rs
+     * @return
+     */
+    public abstract T row2object(ResultSet rs);
+
+
+    public abstract Map<String,Object> object2row(T object);
+
+
+    /***
+     * Prepares insert statement. For each column that us to be inserted adds one questionmark, and returns string in format:
+     * (column1,column2,...,columnN) ?,?,?
+     * @param row
+     * @return
+     */
+    private Map.Entry<String,String> prepareInsertParts(Map<String,Object> row){
+        StringBuilder columns=new StringBuilder();
+        StringBuilder questions=new StringBuilder();
+
+        int counter=0;
+        for(Map.Entry<String,Object> entry:row.entrySet()){
+            counter++;
+            if(entry.getKey().equals("id")) continue;
+            columns.append(entry.getKey());
+            questions.append("?");
+            if(row.size()!=counter){
+                columns.append(",");
+                questions.append(",");
+            }
+        }
+
+        return new AbstractMap.SimpleEntry<String,String>(columns.toString(),questions.toString());
+    }
+
+
+
+
 
 
 
