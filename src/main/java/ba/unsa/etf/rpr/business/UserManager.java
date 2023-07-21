@@ -5,6 +5,8 @@ import ba.unsa.etf.rpr.domain.Book;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.LibraryException;
 
+import java.util.List;
+
 public class UserManager {
 
     public void validateUserName(String name) throws LibraryException {
@@ -42,6 +44,22 @@ public class UserManager {
         }
 
     }
+
+    public void delete(int id){
+        DaoFactory.userDao().delete(id);
+    }
+
+    public List<User> getAll(){
+        return DaoFactory.userDao().getAll();
+    }
+
+    public User update(User user) throws LibraryException{
+        validateUserEmail(user.getEmail());
+        validateUserName(user.getName());
+        validateUserPhone(user.getPhone());
+        return DaoFactory.userDao().update(user);
+    }
+
 
 
 
