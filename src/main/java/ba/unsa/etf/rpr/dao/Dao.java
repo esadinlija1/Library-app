@@ -1,6 +1,8 @@
 package ba.unsa.etf.rpr.dao;
 
 
+import ba.unsa.etf.rpr.exceptions.LibraryException;
+
 import java.util.List;
 
 /***
@@ -22,14 +24,14 @@ public interface Dao<T> {
      * it will be added to its matching table
      * @param item
      */
-    void add(T item);
+    T add(T item) throws LibraryException;
 
     /***
      * 'update' method will use an object passed as methods argument, and it will update a row in table based on id attribute
      * of object, in way that object which is currently in database will be completely replaced by other
      * @param item
      */
-    void update(T item);
+    T update(T item) throws LibraryException;
 
 
     /***

@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.IDable;
+import ba.unsa.etf.rpr.exceptions.LibraryException;
 
 import java.sql.*;
 import java.util.*;
@@ -101,7 +102,7 @@ public abstract  class AbstractDao<T extends IDable> implements Dao<T> {
 
     }
 
-    public void add(T item){
+    public T add(T item) throws LibraryException {
         Map<String,Object> row=object2row(item);
         Map.Entry<String,String> columns=prepareInsertParts(row);
 
@@ -121,15 +122,20 @@ public abstract  class AbstractDao<T extends IDable> implements Dao<T> {
             }
 
             stmt.executeUpdate();
+            ResultSet rs=stmt.getGeneratedKeys();
+            rs.next();
+            item.setId(rs.getInt(1));
+
+            return item;
 
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new LibraryException(e.getMessage(),e);
         }
 
     }
 
-    public void update(T item){
+    public T update(T item) throws LibraryException {
         Map<String,Object> row=object2row(item);
         String updateColumns=prepareUpdateParts(row);
         StringBuilder builder=new StringBuilder();
@@ -147,8 +153,9 @@ public abstract  class AbstractDao<T extends IDable> implements Dao<T> {
             }
             stmt.setObject(counter,item.getId());
             stmt.executeUpdate();
+            return item;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new LibraryException(e.getMessage(),e);
         }
     }
 
