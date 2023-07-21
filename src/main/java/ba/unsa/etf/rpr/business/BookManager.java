@@ -50,6 +50,12 @@ public class BookManager {
 
     }
 
+    public void delete(int bookId) throws LibraryException{
+        DaoFactory.bookDao().delete(bookId);
+    }
+
+
+
 
 
 
