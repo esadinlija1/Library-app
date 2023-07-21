@@ -4,6 +4,8 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Book;
 import ba.unsa.etf.rpr.exceptions.LibraryException;
 
+import java.util.List;
+
 /***
  * Business logic layer for management of Books
  */
@@ -52,6 +54,17 @@ public class BookManager {
 
     public void delete(int bookId) throws LibraryException{
         DaoFactory.bookDao().delete(bookId);
+    }
+
+
+    public Book update(Book book) throws LibraryException{
+        validateBookTitle(book.getTitle());
+        validateBookAuthor(book.getAuthor());
+        return DaoFactory.bookDao().update(book);
+    }
+
+    public List<Book> getAll(){
+        return DaoFactory.bookDao().getAll();
     }
 
 
