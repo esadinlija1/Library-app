@@ -40,6 +40,9 @@ public class BooksController implements Initializable {
     @FXML
     public TableColumn<Book,String> authorColumn;
 
+    @FXML
+    public Button searchButton;
+
     private ObservableList<Book> bookObservableList= FXCollections.observableArrayList();
 
 
@@ -48,6 +51,7 @@ public class BooksController implements Initializable {
         idColumn.setCellValueFactory(new PropertyValueFactory<Book, Integer>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
+
 
         booksTable.setItems(FXCollections.observableList(bookManager.getAll()));
         booksTable.refresh();
@@ -59,4 +63,6 @@ public class BooksController implements Initializable {
            booksTable.setItems(FXCollections.observableList(books));
            booksTable.refresh();
     }
+
+
 }

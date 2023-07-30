@@ -68,6 +68,7 @@ public class BookManager {
     }
 
 
+    public List<Book> searchByTitle(String title) throws LibraryException {return DaoFactory.bookDao().searchByTitle(title);}
 
 
 
