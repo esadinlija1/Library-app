@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -32,5 +33,10 @@ public void openUsersTab(ActionEvent event){
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void closeApp(ActionEvent actionEvent){
+        Platform.exit();
+        System.exit(0);
     }
 }
