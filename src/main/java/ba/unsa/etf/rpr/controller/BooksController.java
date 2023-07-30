@@ -2,7 +2,6 @@ package ba.unsa.etf.rpr.controller;
 
 import ba.unsa.etf.rpr.business.BookManager;
 import ba.unsa.etf.rpr.domain.Book;
-import ba.unsa.etf.rpr.exceptions.LibraryException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /***
@@ -29,7 +29,7 @@ public class BooksController implements Initializable {
     public TableView booksTable;
 
     @FXML
-    public TextField search;
+    public TextField searchKeyWord;
 
     @FXML
     public TableColumn<Book,Integer> idColumn;
@@ -49,12 +49,14 @@ public class BooksController implements Initializable {
         titleColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
 
-        refreshBooks();
+        booksTable.setItems(FXCollections.observableList(bookManager.getAll()));
+        booksTable.refresh();
+
     }
 
 
-    private void refreshBooks(){
-            booksTable.setItems(FXCollections.observableList(bookManager.getAll()));
-            booksTable.refresh();
+    private void refreshBooks(List<Book> books){
+           booksTable.setItems(FXCollections.observableList(books));
+           booksTable.refresh();
     }
 }
