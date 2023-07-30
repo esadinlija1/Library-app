@@ -17,6 +17,10 @@ public void openBooksTab(ActionEvent event){
     openNewTab("/fxml/books.fxml",new BooksController());
 }
 
+public void openUsersTab(ActionEvent event){
+    openNewTab("/fxml/users.fxml",new UsersController());
+}
+
     private void openNewTab(String file,Object controller) {
         try{
             FXMLLoader loader=new FXMLLoader(getClass().getResource(file));
