@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Book;
+import ba.unsa.etf.rpr.exceptions.LibraryException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -54,6 +55,8 @@ public class BookDaoSQLImpl extends AbstractDao<Book> implements BookDao{
     }
 
 
-
-
+    @Override
+    public List<Book> searchByTitle(String title) throws LibraryException {
+        return executeQuery("SELECT * FROM books WHERE title LIKE concat('%', ?, '%')", new Object[]{title});
+    }
 }
