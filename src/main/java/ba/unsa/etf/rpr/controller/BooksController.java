@@ -2,8 +2,11 @@ package ba.unsa.etf.rpr.controller;
 
 import ba.unsa.etf.rpr.business.BookManager;
 import ba.unsa.etf.rpr.domain.Book;
+import ba.unsa.etf.rpr.exceptions.LibraryException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -53,11 +56,28 @@ public class BooksController implements Initializable {
         authorColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
 
 
-        booksTable.setItems(FXCollections.observableList(bookManager.getAll()));
-        booksTable.refresh();
+        //Implementing search feature-on click of button, the search method in manager will be called and list in
+        //table will be updated
+        searchButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    refreshBooks(bookManager.searchByTitle(searchKeyWord.getText()));
+                } catch (LibraryException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+       refreshBooks(bookManager.getAll());
 
     }
 
+
+    /***
+     * Method used when we need to refresh contents of table
+     * @param books-books that should be shown in table
+     */
 
     private void refreshBooks(List<Book> books){
            booksTable.setItems(FXCollections.observableList(books));
