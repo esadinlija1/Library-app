@@ -8,14 +8,22 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 /***
  * Controller that manages Books entity
@@ -46,6 +54,9 @@ public class BooksController implements Initializable {
 
     @FXML
     public Button searchButton=new Button();
+
+    @FXML
+    public Button addBookButton=new Button();
 
     private ObservableList<Book> bookObservableList= FXCollections.observableArrayList();
 
@@ -88,6 +99,19 @@ public class BooksController implements Initializable {
     private void refreshBooks(List<Book> books){
            booksTable.setItems(FXCollections.observableList(books));
            booksTable.refresh();
+    }
+
+    private void openAddBookTab(){
+        try{
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/addbook.fxml"));
+            //loader.setController(controller);
+            Stage stage=new Stage();
+            stage.setScene(new Scene(loader.<Parent>load(),USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

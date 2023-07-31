@@ -5,13 +5,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.Addbook">
    <children>
       <TextField fx:id="titleField" layoutX="242.0" layoutY="52.0" prefHeight="30.0" prefWidth="222.0" />
       <TextField fx:id="authorField" layoutX="242.0" layoutY="112.0" prefHeight="30.0" prefWidth="222.0" />
       <Label layoutX="63.0" layoutY="58.0" prefHeight="18.0" prefWidth="161.0" text="Enter title" />
       <Label layoutX="63.0" layoutY="118.0" prefHeight="18.0" prefWidth="161.0" text="Enter author" />
-      <Button fx:id="addBookButton" layoutX="216.0" layoutY="255.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="178.0" text="Add book" />
+      <Button fx:id="addBookButton" layoutX="216.0" layoutY="255.0" mnemonicParsing="false" onAction="#addBook" prefHeight="26.0" prefWidth="178.0" text="Add book" />
    </children>
 </AnchorPane>
