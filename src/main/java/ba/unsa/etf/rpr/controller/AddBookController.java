@@ -33,11 +33,13 @@ public class AddBookController {
     @FXML
     private Button addBookButton=new Button();
 
+    @FXML
     private void addBook() throws LibraryException {
         bookManager.add(new Book(0,titleField.getText(),authorField.getText()));
         backToBooksTab();
     }
 
+    @FXML
     private void backToBooksTab(){
         try{
             FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/books.fxml"));

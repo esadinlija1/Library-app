@@ -101,6 +101,7 @@ public class BooksController implements Initializable {
            booksTable.refresh();
     }
 
+    @FXML
     private void openAddBookTab(){
         try{
             FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/addbook.fxml"));
