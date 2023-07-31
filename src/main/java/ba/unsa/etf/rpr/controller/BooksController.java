@@ -125,6 +125,11 @@ public class BooksController implements Initializable {
         }
     }
 
+    @FXML
+    private void searchBooks() throws LibraryException {
+        refreshBooks(bookManager.searchByTitle(searchKeyWord.getText()));
+    }
+
 
 
 

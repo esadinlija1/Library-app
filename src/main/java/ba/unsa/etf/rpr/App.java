@@ -8,6 +8,7 @@ import ba.unsa.etf.rpr.dao.UserDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Book;
 import ba.unsa.etf.rpr.domain.IssuedBook;
 import ba.unsa.etf.rpr.domain.User;
+import ba.unsa.etf.rpr.exceptions.LibraryException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +22,15 @@ public class App
         /*bookDaoSQL.add(new Book(1,"Na Drini ćuprija","Ivo Andrić"));
         bookDaoSQL.add(new Book(2,"Tvrđava","Meša Selimović"));*/
 
-        List<Book> books=bookManager.getAll();
+        List<Book> books= null;
+        try {
+            books = bookManager.searchByTitle("Zeleno busenje");
+            System.out.println(books.get(0).toString());
+        } catch (LibraryException e) {
+            throw new RuntimeException(e);
+        }
 
-        System.out.println(books.get(0).toString());
+
 
 
        // UserDaoSQLImpl userDaoSQL=new UserDaoSQLImpl();

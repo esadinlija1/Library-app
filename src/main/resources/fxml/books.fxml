@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.BooksController">
    <children>
       <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHomeTab" text="Back" />
-      <TextField layoutX="100.0" layoutY="14.0" prefHeight="26.0" prefWidth="394.0" />
+      <TextField fx:id="searchKeyWord" layoutX="100.0" layoutY="14.0" prefHeight="26.0" prefWidth="394.0" />
       <TableView fx:id="booksTable" layoutX="7.0" layoutY="48.0" prefHeight="218.0" prefWidth="602.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="111.20001077651978" text="ID" />
@@ -17,7 +17,7 @@
             <TableColumn fx:id="authorColumn" prefWidth="246.39999389648438" text="Author" />
         </columns>
       </TableView>
-      <Button fx:id="searchButton" layoutX="510.0" layoutY="15.0" mnemonicParsing="false" text="Search" />
+      <Button fx:id="searchButton" layoutX="510.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchBooks" text="Search" />
       <Button fx:id="addBookButton" layoutX="252.0" layoutY="329.0" mnemonicParsing="false" onAction="#openAddBookTab" prefHeight="39.0" prefWidth="241.0" text="Add a new book" />
    </children>
 </AnchorPane>
