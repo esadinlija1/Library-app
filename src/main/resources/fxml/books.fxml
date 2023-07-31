@@ -14,7 +14,8 @@
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="111.20001077651978" text="ID" />
           <TableColumn fx:id="titleColumn" prefWidth="243.19995880126953" text="Title" />
-            <TableColumn fx:id="authorColumn" prefWidth="246.39999389648438" text="Author" />
+            <TableColumn fx:id="authorColumn" prefWidth="137.60003662109375" text="Author" />
+            <TableColumn prefWidth="108.00003662109373" text="Actions" />
         </columns>
       </TableView>
       <Button fx:id="searchButton" layoutX="510.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchBooks" text="Search" />
