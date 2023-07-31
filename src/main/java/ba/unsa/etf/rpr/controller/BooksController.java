@@ -29,28 +29,33 @@ public class BooksController implements Initializable {
     public AnchorPane booksTab;
 
     @FXML
-    public TableView booksTable;
+    public TableView booksTable=new TableView();
 
     @FXML
-    public TextField searchKeyWord;
+    public TextField searchKeyWord=new TextField();
 
     @FXML
-    public TableColumn<Book,Integer> idColumn;
+    public TableColumn<Book,Integer> idColumn=new TableColumn<>("ID");
+
 
     @FXML
-    public TableColumn<Book,String> titleColumn;
+    public TableColumn<Book,String> titleColumn=new TableColumn<>("Title");
 
     @FXML
-    public TableColumn<Book,String> authorColumn;
+    public TableColumn<Book,String> authorColumn=new TableColumn<>("Author");
 
     @FXML
-    public Button searchButton;
+    public Button searchButton=new Button();
 
     private ObservableList<Book> bookObservableList= FXCollections.observableArrayList();
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+
         idColumn.setCellValueFactory(new PropertyValueFactory<Book, Integer>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
@@ -69,7 +74,8 @@ public class BooksController implements Initializable {
             }
         });
 
-       refreshBooks(bookManager.getAll());
+        booksTable.setItems(FXCollections.observableList(bookManager.getAll()));
+        booksTable.refresh();
 
     }
 

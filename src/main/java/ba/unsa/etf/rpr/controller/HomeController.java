@@ -14,18 +14,11 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class HomeController {
 
-public void openBooksTab(ActionEvent event){
-    openNewTab("/fxml/books.fxml",new BooksController());
-}
-
-public void openUsersTab(ActionEvent event){
-    openNewTab("/fxml/users.fxml",new UsersController());
-}
 
     private void openNewTab(String file,Object controller) {
         try{
             FXMLLoader loader=new FXMLLoader(getClass().getResource(file));
-            loader.setController(controller);
+            //loader.setController(controller);
             Stage stage=new Stage();
             stage.setScene(new Scene(loader.<Parent>load(),USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.initStyle(StageStyle.UTILITY);
@@ -38,5 +31,13 @@ public void openUsersTab(ActionEvent event){
     public void closeApp(ActionEvent actionEvent){
         Platform.exit();
         System.exit(0);
+    }
+
+    public void openBooksTab(javafx.event.ActionEvent actionEvent) {
+        openNewTab("/fxml/books.fxml",new BooksController());
+    }
+
+    public void openUsersTab(javafx.event.ActionEvent actionEvent) {
+        openNewTab("/fxml/users.fxml",new UsersController());
     }
 }
