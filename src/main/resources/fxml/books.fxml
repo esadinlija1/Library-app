@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.BooksController">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHomeTab" text="Back" />
       <TextField layoutX="100.0" layoutY="14.0" prefHeight="26.0" prefWidth="394.0" />
       <TableView fx:id="booksTable" layoutX="7.0" layoutY="48.0" prefHeight="218.0" prefWidth="602.0">
         <columns>

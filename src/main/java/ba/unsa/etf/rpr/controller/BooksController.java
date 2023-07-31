@@ -58,6 +58,9 @@ public class BooksController implements Initializable {
     @FXML
     public Button addBookButton=new Button();
 
+    @FXML
+    public Button backButton=new Button();
+
     private ObservableList<Book> bookObservableList= FXCollections.observableArrayList();
 
 
@@ -74,16 +77,7 @@ public class BooksController implements Initializable {
 
         //Implementing search feature-on click of button, the search method in manager will be called and list in
         //table will be updated
-        searchButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                try {
-                    refreshBooks(bookManager.searchByTitle(searchKeyWord.getText()));
-                } catch (LibraryException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
+
 
         booksTable.setItems(FXCollections.observableList(bookManager.getAll()));
         booksTable.refresh();
@@ -101,6 +95,8 @@ public class BooksController implements Initializable {
            booksTable.refresh();
     }
 
+
+
     @FXML
     private void openAddBookTab(){
         try{
@@ -114,6 +110,25 @@ public class BooksController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    private void backToHomeTab(){
+        try{
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/home.fxml"));
+            //loader.setController(controller);
+            Stage stage=new Stage();
+            stage.setScene(new Scene(loader.<Parent>load(),USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
+
 
 
 }
