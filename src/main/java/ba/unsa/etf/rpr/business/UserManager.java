@@ -60,6 +60,10 @@ public class UserManager {
         return DaoFactory.userDao().update(user);
     }
 
+    public List<User> searchByName(String name) throws LibraryException {
+        return DaoFactory.userDao().searchByName(name);
+    }
+
 
 
 

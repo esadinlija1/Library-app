@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Book;
 import ba.unsa.etf.rpr.domain.IssuedBook;
 import ba.unsa.etf.rpr.domain.User;
+import ba.unsa.etf.rpr.exceptions.LibraryException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -38,5 +39,10 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
         row.put("email",object.getEmail());
         row.put("phone",object.getPhone());
         return row;
+    }
+
+    @Override
+    public List<User> searchByName(String name) throws LibraryException {
+        return executeQuery("SELECT * FROM users WHERE name LIKE concat('%', ?, '%')",new Object[]{name});
     }
 }
