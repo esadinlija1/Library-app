@@ -13,6 +13,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+import java.util.List;
+
+
+/***
+ * Controller class for Users tab
+ */
+
 public class UsersController {
 
     private final UserManager userManager=new UserManager();
@@ -56,5 +63,16 @@ public class UsersController {
 
 
     private ObservableList<User> usersObservableList= FXCollections.observableArrayList();
+
+
+    /***
+     * Method that is used when initializing to get list of all users, but also when we do any kind of change in list, i.e.
+     * delete a user or update data of current user
+     * @param users
+     */
+    private void refreshUsers(List<User> users){
+        usersTable.setItems(FXCollections.observableList(users));
+        usersTable.refresh();
+    }
 
 }
