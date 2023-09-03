@@ -10,7 +10,7 @@ import java.util.List;
 public class UserManager {
 
     public void validateUserName(String name) throws LibraryException {
-        if(name==null || name.length()<2 || name.length()>100)
+        if(name==null )
             throw new LibraryException("Invalid name of user");
     }
 
@@ -18,9 +18,9 @@ public class UserManager {
 
         int ioFampersand=email. indexOf("@");
 
-        if(email==null || email.contains("@")==false || email.contains(".com")==false || email.contains("@.com")==true
-        || email.substring(0,ioFampersand).length()==0)
+        if(email==null) {
             throw new LibraryException("Invalid email of user");
+        }
     }
 
     public void validateUserPhone(String phone) throws LibraryException{

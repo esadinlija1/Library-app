@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -28,12 +29,14 @@ public class AddUserController {
     private TextField phoneField=new TextField();
 
     @FXML
-    private Button emailField=new Button();
+    private TextField emailField=new TextField();
 
     @FXML
     private void addUser() throws LibraryException {
-        userManager.add(new User(0,nameField.getText(),emailField.getText(),phoneField.getText()));
-        backToUsersTab();
+
+            userManager.add(new User(0, nameField.getText(), emailField.getText(), phoneField.getText()));
+            backToUsersTab();
+
     }
 
     @FXML

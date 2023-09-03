@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -30,7 +31,7 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
  * Controller class for Users tab
  */
 
-public class UsersController {
+public class UsersController implements Initializable {
 
     private final UserManager userManager=new UserManager();
 
@@ -51,7 +52,7 @@ public class UsersController {
     public TableColumn<User,String> nameColumn=new TableColumn<>("Name");
 
     @FXML
-    public TableColumn<User,String> emailColumn=new TableColumn<>("email");
+    public TableColumn<User,String> emailColumn=new TableColumn<>("Email");
 
     @FXML
     public TableColumn<User,String> phoneColumn=new TableColumn<>("Phone");
@@ -67,7 +68,7 @@ public class UsersController {
 
 
     @FXML
-    public TableColumn<User,Integer> actionColumn=new TableColumn<>("Actions");
+    public TableColumn<User,Integer> actionColumn=new TableColumn<>("ActionsColumn");
 
 
 
@@ -75,7 +76,7 @@ public class UsersController {
     private ObservableList<User> usersObservableList= FXCollections.observableArrayList();
 
 
-    @FXML
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         idColumn.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
@@ -84,8 +85,7 @@ public class UsersController {
         phoneColumn.setCellValueFactory(new PropertyValueFactory<User,String>("phone"));
         actionColumn.setCellValueFactory(new PropertyValueFactory<User,Integer>("id"));
 
-        //Implementing search feature-on click of button, the search method in manager will be called and list in
-        //table will be updated
+
 
         actionColumn.setCellFactory(new ActionCellFactory(editEvent -> {
             int userId = Integer.parseInt(((Button)editEvent.getSource()).getUserData().toString());
@@ -94,8 +94,8 @@ public class UsersController {
             int userId = Integer.parseInt(((Button)deleteEvent.getSource()).getUserData().toString());
             deleteUser(userId);
         })));
-        usersTable.setItems(FXCollections.observableList(userManager.getAll()));
-        usersTable.refresh();
+       refreshUsers(userManager.getAll());
+        System.out.println(userManager.getAll().size());
 
     }
     /***
@@ -151,5 +151,19 @@ public class UsersController {
      */
     public void searchUsers(ActionEvent actionEvent) throws LibraryException {
         refreshUsers(userManager.searchByName(searchKeyWord.getText()));
+    }
+
+    @FXML
+    private void openAddUserTab(){
+        try{
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/adduser.fxml"));
+            //loader.setController(controller);
+            Stage stage=new Stage();
+            stage.setScene(new Scene(loader.<Parent>load(),USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
