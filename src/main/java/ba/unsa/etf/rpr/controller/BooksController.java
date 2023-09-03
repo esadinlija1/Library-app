@@ -1,12 +1,11 @@
 package ba.unsa.etf.rpr.controller;
 
 import ba.unsa.etf.rpr.business.BookManager;
+import ba.unsa.etf.rpr.controller.components.ActionCellFactory;
 import ba.unsa.etf.rpr.domain.Book;
 import ba.unsa.etf.rpr.exceptions.LibraryException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +20,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -61,6 +61,13 @@ public class BooksController implements Initializable {
     @FXML
     public Button backButton=new Button();
 
+
+    @FXML
+    public TableColumn<Book,Integer> actionColumn=new TableColumn<>("Actions");
+
+
+
+
     private ObservableList<Book> bookObservableList= FXCollections.observableArrayList();
 
 
@@ -73,15 +80,39 @@ public class BooksController implements Initializable {
         idColumn.setCellValueFactory(new PropertyValueFactory<Book, Integer>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
-
+        actionColumn.setCellValueFactory(new PropertyValueFactory<Book,Integer>("id"));
 
         //Implementing search feature-on click of button, the search method in manager will be called and list in
         //table will be updated
 
-
+        actionColumn.setCellFactory(new ActionCellFactory(editEvent -> {
+            int bookId = Integer.parseInt(((Button)editEvent.getSource()).getUserData().toString());
+            updateBook(bookId);
+        }, (deleteEvent -> {
+            int bookId = Integer.parseInt(((Button)deleteEvent.getSource()).getUserData().toString());
+            try {
+                deleteBook(bookId);
+            } catch (LibraryException e) {
+                throw new RuntimeException(e);
+            }
+        })));
         booksTable.setItems(FXCollections.observableList(bookManager.getAll()));
         booksTable.refresh();
 
+    }
+
+    private void deleteBook(int bookId) throws LibraryException {
+
+            Alert confirmation=new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to remove this book");
+            Optional<ButtonType> result=confirmation.showAndWait();
+            if(!result.get().getButtonData().isCancelButton()){
+                bookManager.delete(bookId);
+                refreshBooks(bookManager.getAll());
+
+        }
+    }
+
+    private void updateBook(int bookId) {
     }
 
 

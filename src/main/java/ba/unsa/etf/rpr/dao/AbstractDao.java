@@ -195,7 +195,7 @@ public abstract  class AbstractDao<T extends IDable> implements Dao<T> {
     }
 
     public void delete(int id) {
-        String sql="DELETE FROM " + tableName + "WHERE id = ?";
+        String sql="DELETE FROM " + tableName + " WHERE id = ?";
         try{
             PreparedStatement stmt=getConnection().prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1,id);
