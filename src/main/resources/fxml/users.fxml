@@ -22,7 +22,7 @@
         </columns>
       </TableView>
       <TextField layoutX="204.0" layoutY="6.0" prefHeight="26.0" prefWidth="346.0" />
-      <Button layoutX="551.0" layoutY="7.0" mnemonicParsing="false" text="Search" />
-      <Button mnemonicParsing="false" text="Back" />
+      <Button layoutX="551.0" layoutY="7.0" mnemonicParsing="false" onAction="#searchUsers" text="Search" />
+      <Button mnemonicParsing="false" onAction="#backToHomeTab" text="Back" />
    </children>
 </AnchorPane>

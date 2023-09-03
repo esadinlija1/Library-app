@@ -6,6 +6,7 @@ import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.LibraryException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -108,15 +109,11 @@ public class UsersController {
     }
 
 
-    /***
-     * Method that implements search feature for users
-     * @param name
-     * @throws LibraryException
-     */
-    @FXML
-    public void searchUsers(String name) throws LibraryException {
+
+
+   /* public void searchUsers(String name) throws LibraryException {
         refreshUsers(userManager.searchByName(name));
-    }
+    }*/
 
     public void updateUser(int userId){
 
@@ -146,4 +143,13 @@ public class UsersController {
         }
     }
 
+
+    /***
+     * Method that implements search feature for users
+     * @param actionEvent
+     * @throws LibraryException
+     */
+    public void searchUsers(ActionEvent actionEvent) throws LibraryException {
+        refreshUsers(userManager.searchByName(searchKeyWord.getText()));
+    }
 }
