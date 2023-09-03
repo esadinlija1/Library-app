@@ -8,13 +8,11 @@ import ba.unsa.etf.rpr.exceptions.LibraryException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.List;
+import java.util.Optional;
 
 
 /***
@@ -76,9 +74,29 @@ public class UsersController {
         usersTable.refresh();
     }
 
+
+    /***
+     * Method that implements search feature for users
+     * @param name
+     * @throws LibraryException
+     */
     @FXML
     public void searchUsers(String name) throws LibraryException {
         refreshUsers(userManager.searchByName(name));
+    }
+
+    public void updateUsers(int userId){
+
+    }
+
+    public void deleteUser(int userId){
+        Alert confirmation=new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to remove this book");
+        Optional<ButtonType> result=confirmation.showAndWait();
+        if(!result.get().getButtonData().isCancelButton()){
+            userManager.delete(userId);
+            refreshUsers(userManager.getAll());
+
+        }
     }
 
 }
