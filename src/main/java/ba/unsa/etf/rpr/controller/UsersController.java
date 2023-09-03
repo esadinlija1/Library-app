@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.business.BookManager;
 import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.Book;
 import ba.unsa.etf.rpr.domain.User;
+import ba.unsa.etf.rpr.exceptions.LibraryException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -73,6 +74,11 @@ public class UsersController {
     private void refreshUsers(List<User> users){
         usersTable.setItems(FXCollections.observableList(users));
         usersTable.refresh();
+    }
+
+    @FXML
+    public void searchUsers(String name) throws LibraryException {
+        refreshUsers(userManager.searchByName(name));
     }
 
 }
