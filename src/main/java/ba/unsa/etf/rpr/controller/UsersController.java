@@ -111,11 +111,19 @@ public class UsersController implements Initializable {
 
 
 
-   /* public void searchUsers(String name) throws LibraryException {
-        refreshUsers(userManager.searchByName(name));
-    }*/
+
 
     public void updateUser(int userId){
+        try{
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/edituser.fxml"));
+            loader.setController(new EditUserController(userId));
+            Stage stage=new Stage();
+            stage.setScene(new Scene(loader.<Parent>load(),USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
