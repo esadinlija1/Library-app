@@ -82,7 +82,7 @@ public class BooksController implements Initializable {
         authorColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
         actionColumn.setCellValueFactory(new PropertyValueFactory<Book,Integer>("id"));
 
-        //Implementing search feature-on click of button, the search method in manager will be called and list in
+         //Implementing search feature-on click of button, the search method in manager will be called and list in
         //table will be updated
 
         actionColumn.setCellFactory(new ActionCellFactory(editEvent -> {
