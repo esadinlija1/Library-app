@@ -40,4 +40,8 @@ public class HomeController {
     public void openUsersTab(javafx.event.ActionEvent actionEvent) {
         openNewTab("/fxml/users.fxml",new UsersController());
     }
+
+    public void openIssuedBooksTab(javafx.event.ActionEvent actionEvent){
+        openNewTab("/fxml/issuedbooks.fxml",new IssuedBookController());
+    }
 }
