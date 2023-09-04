@@ -31,7 +31,8 @@ public class EditBookController {
     private TextField authorField=new TextField();
 
 
-    private void editBook() throws LibraryException {
+   @FXML
+   private void editBook() throws LibraryException {
         bookManager.update(new Book(this.editBookId,titleField.getText(),authorField.getText()));
         backToBooksTab();
     }

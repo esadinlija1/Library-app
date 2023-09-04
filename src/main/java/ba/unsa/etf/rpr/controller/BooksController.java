@@ -113,6 +113,16 @@ public class BooksController implements Initializable {
     }
 
     private void updateBook(int bookId) {
+        try{
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/editbook.fxml"));
+            loader.setController(new EditBookController(bookId));
+            Stage stage=new Stage();
+            stage.setScene(new Scene(loader.<Parent>load(),USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -141,6 +151,7 @@ public class BooksController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
 
     @FXML
     private void backToHomeTab(){
