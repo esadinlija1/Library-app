@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.Addissue">
+   <children>
+      <TextField layoutX="204.0" layoutY="71.0" />
+      <TextField layoutX="205.0" layoutY="151.0" />
+      <TextField layoutX="206.0" layoutY="241.0" />
+      <Label layoutX="62.0" layoutY="75.0" prefHeight="18.0" prefWidth="109.0" text="Enter book ID" />
+      <Label layoutX="59.0" layoutY="154.0" prefHeight="18.0" prefWidth="116.0" text="Enter user ID" />
+      <Label layoutX="60.0" layoutY="245.0" prefHeight="18.0" prefWidth="90.0" text="Enter issue date" />
+   </children>
+</AnchorPane>

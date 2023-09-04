@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="542.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.Issuedbooks">
+   <children>
+      <TableView layoutX="23.0" layoutY="22.0" prefHeight="466.0" prefWidth="641.0">
+        <columns>
+          <TableColumn prefWidth="98.39996337890625" text="ID" />
+          <TableColumn prefWidth="119.20001220703125" text="BookId" />
+            <TableColumn prefWidth="81.5999755859375" text="UserId" />
+            <TableColumn prefWidth="196.79998779296875" text="IssueDate" />
+            <TableColumn prefWidth="144.00002441406252" text="Action Column" />
+        </columns>
+      </TableView>
+      <Button layoutX="520.0" layoutY="502.0" mnemonicParsing="false" text="Issue another book" />
+   </children>
+</AnchorPane>
